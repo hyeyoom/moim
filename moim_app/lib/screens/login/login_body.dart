@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:moim_app/design_system.dart';
 import 'package:moim_app/screens/login/login_background.dart';
 
 import '../../components/buttons.dart';
@@ -48,7 +49,23 @@ class LoginBody extends StatelessWidget {
             RoundedButton(
               text: 'LOGIN',
               onPress: () {},
-            )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const <Widget>[
+                Text(
+                  'Do not have an account? ',
+                  style: TextStyle(color: primaryColor),
+                ),
+                Text(
+                  'Sign Up',
+                  style: TextStyle(
+                    color: primaryColor,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),
