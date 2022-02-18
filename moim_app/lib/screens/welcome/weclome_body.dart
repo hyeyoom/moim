@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moim_app/design_system.dart';
+import 'package:moim_app/screens/sign_up/sign_up_screen.dart';
 
 import 'welcome_background.dart';
 import '../../components/buttons.dart';
@@ -42,7 +43,7 @@ class WelcomeBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return LoginScreen();
+                      return const LoginScreen();
                     }
                   ),
                 );
@@ -55,7 +56,16 @@ class WelcomeBody extends StatelessWidget {
             alignment: AlignmentDirectional.center,
             child: RoundedButton(
               text: 'SIGN UP',
-              onPress: () {},
+              onPress: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) {
+                        return const SignUpScreen();
+                      }
+                  ),
+                );
+              },
               color: primaryWeakColor,
               textColor: Colors.black,
             ),

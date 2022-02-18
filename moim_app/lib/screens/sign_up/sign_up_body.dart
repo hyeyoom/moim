@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moim_app/design_system.dart';
-import 'package:moim_app/screens/login/login_background.dart';
-import 'package:moim_app/screens/sign_up/sign_up_screen.dart';
+import 'package:moim_app/screens/login/login_screen.dart';
+import 'package:moim_app/screens/sign_up/sign_up_background.dart';
 
 import '../../components/buttons.dart';
 import '../../components/rounded_input_field.dart';
 
-class LoginBody extends StatelessWidget {
-  const LoginBody({Key? key}) : super(key: key);
+class SignUpBody extends StatelessWidget {
+  const SignUpBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      child: LoginBackground(
+      child: SignUpBackground(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,7 +22,7 @@ class LoginBody extends StatelessWidget {
             const Align(
               alignment: AlignmentDirectional.center,
               child: Text(
-                'LOGIN',
+                'SIGN UP',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -32,7 +32,7 @@ class LoginBody extends StatelessWidget {
             Align(
               alignment: AlignmentDirectional.center,
               child: SvgPicture.asset(
-                'assets/icons/login.svg',
+                'assets/icons/signup.svg',
                 height: size.height * 0.35,
               ),
             ),
@@ -48,14 +48,14 @@ class LoginBody extends StatelessWidget {
               type: RoundedInputFieldType.password,
             ),
             RoundedButton(
-              text: 'LOGIN',
+              text: 'SIGN UP',
               onPress: () {},
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Text(
-                  'Do not have an account? ',
+                  'Already have an account? ',
                   style: TextStyle(color: primaryColor),
                 ),
                 GestureDetector(
@@ -64,13 +64,13 @@ class LoginBody extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) {
-                            return const SignUpScreen();
+                            return const LoginScreen();
                           }
                       ),
                     );
                   },
                   child: const Text(
-                    'Sign Up',
+                    'Login',
                     style: TextStyle(
                       color: primaryColor,
                       fontWeight: FontWeight.bold,
