@@ -6,11 +6,14 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Colors.white,
-        child: LoginBody(),
-      ),
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+          body: Container(
+            color: Colors.white,
+            child: LoginBody(),
+          ),
+        ),
     );
   }
 }

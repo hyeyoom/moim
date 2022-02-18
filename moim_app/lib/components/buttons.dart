@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moim_app/design_system.dart';
 
 class RoundedButton extends StatelessWidget {
   final String text;
@@ -9,8 +10,8 @@ class RoundedButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onPress,
-    required this.color,
-    required this.textColor
+    this.color = primaryColor,
+    this.textColor = primaryWeakColor,
   }) : super(key: key);
 
   @override
