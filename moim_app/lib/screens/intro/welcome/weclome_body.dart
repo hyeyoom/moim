@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moim_app/design_system.dart';
+import 'package:moim_app/components/buttons.dart';
+import 'package:moim_app/core/constants/design_system.dart';
+import 'package:moim_app/screens/intro/login/login_screen.dart';
 import 'package:moim_app/screens/intro/sign_up/sign_up_screen.dart';
 
-import '../../../components/buttons.dart';
-import '../login/login_screen.dart';
 import 'welcome_background.dart';
 
 class WelcomeBody extends StatelessWidget {

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moim_app/design_system.dart';
+import 'package:moim_app/components/buttons.dart';
+import 'package:moim_app/components/rounded_input_field.dart';
+import 'package:moim_app/core/constants/design_system.dart';
 import 'package:moim_app/screens/intro/login/login_screen.dart';
 import 'package:moim_app/screens/intro/sign_up/sign_up_background.dart';
-
-import '../../../components/buttons.dart';
-import '../../../components/rounded_input_field.dart';
 
 class SignUpBody extends StatelessWidget {
   const SignUpBody({Key? key}) : super(key: key);

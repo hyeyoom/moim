@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../design_system.dart';
+import 'package:moim_app/core/constants/design_system.dart';
 
 class TextFieldContainer extends StatelessWidget {
   final Widget child;

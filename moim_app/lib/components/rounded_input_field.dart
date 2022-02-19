@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moim_app/components/stateful_text_field.dart';
 import 'package:moim_app/components/text_field_container.dart';
-
-import '../design_system.dart';
+import 'package:moim_app/core/constants/design_system.dart';
 
 enum RoundedInputFieldType { text, password }
 

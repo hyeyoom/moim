@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moim_app/design_system.dart';
+import 'package:moim_app/core/constants/design_system.dart';
 import 'package:moim_app/screens/intro/welcome/welcome_screen.dart';
 
 void main() => runApp(const MyApp());
