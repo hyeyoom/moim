@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:moim_app/screens/sign_up/sign_up_body.dart';
+import 'package:moim_app/screens/intro/login/login_body.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
       child: Scaffold(
           body: Container(
             color: Colors.white,
-            child: const SignUpBody(),
+            child: const LoginBody(),
           ),
         ),
     );
