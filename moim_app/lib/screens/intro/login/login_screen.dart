@@ -9,11 +9,11 @@ class LoginScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          body: Container(
-            color: Colors.white,
-            child: const LoginBody(),
-          ),
+        body: Container(
+          color: Colors.white,
+          child: const LoginBody(),
         ),
+      ),
     );
   }
 }

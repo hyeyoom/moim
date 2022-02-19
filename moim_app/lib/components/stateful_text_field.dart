@@ -22,9 +22,7 @@ class StatefulTextField extends StatefulWidget {
 }
 
 class _StatefulTextFieldState extends State<StatefulTextField> {
-
   bool visible = true;
-
 
   @override
   void initState() {
@@ -39,6 +37,7 @@ class _StatefulTextFieldState extends State<StatefulTextField> {
       visible = true;
     });
   }
+
   void markAsInvisible() {
     setState(() {
       visible = false;
@@ -60,14 +59,14 @@ class _StatefulTextFieldState extends State<StatefulTextField> {
           suffixIcon: widget.type != RoundedInputFieldType.password
               ? null
               : !visible
-              ? IconButton(
-            icon: const Icon(Icons.visibility),
-            onPressed: markAsVisible,
-          )
-              : IconButton(
-            icon: const Icon(Icons.visibility_off),
-            onPressed: markAsInvisible,
-          )),
+                  ? IconButton(
+                      icon: const Icon(Icons.visibility),
+                      onPressed: markAsVisible,
+                    )
+                  : IconButton(
+                      icon: const Icon(Icons.visibility_off),
+                      onPressed: markAsInvisible,
+                    )),
     );
   }
 }

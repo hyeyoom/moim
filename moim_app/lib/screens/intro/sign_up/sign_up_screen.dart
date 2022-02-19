@@ -9,11 +9,11 @@ class SignUpScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          body: Container(
-            color: Colors.white,
-            child: const SignUpBody(),
-          ),
+        body: Container(
+          color: Colors.white,
+          child: const SignUpBody(),
         ),
+      ),
     );
   }
 }

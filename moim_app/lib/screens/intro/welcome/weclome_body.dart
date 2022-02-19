@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moim_app/design_system.dart';
 import 'package:moim_app/screens/intro/sign_up/sign_up_screen.dart';
 
-import 'welcome_background.dart';
 import '../../../components/buttons.dart';
 import '../login/login_screen.dart';
+import 'welcome_background.dart';
 
 class WelcomeBody extends StatelessWidget {
   const WelcomeBody({Key? key}) : super(key: key);
@@ -25,7 +25,9 @@ class WelcomeBody extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: size.height * 0.03,),
+          SizedBox(
+            height: size.height * 0.03,
+          ),
           Align(
             alignment: AlignmentDirectional.center,
             child: SvgPicture.asset(
@@ -33,7 +35,9 @@ class WelcomeBody extends StatelessWidget {
               height: size.height * 0.45,
             ),
           ),
-          SizedBox(height: size.height * 0.03,),
+          SizedBox(
+            height: size.height * 0.03,
+          ),
           Align(
             alignment: AlignmentDirectional.center,
             child: RoundedButton(
@@ -41,11 +45,9 @@ class WelcomeBody extends StatelessWidget {
               onPress: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const LoginScreen();
-                    }
-                  ),
+                  MaterialPageRoute(builder: (context) {
+                    return const LoginScreen();
+                  }),
                 );
               },
               color: primaryColor,
@@ -59,11 +61,9 @@ class WelcomeBody extends StatelessWidget {
               onPress: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) {
-                        return const SignUpScreen();
-                      }
-                  ),
+                  MaterialPageRoute(builder: (context) {
+                    return const SignUpScreen();
+                  }),
                 );
               },
               color: primaryWeakColor,

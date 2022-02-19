@@ -62,11 +62,9 @@ class LoginBody extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) {
-                            return const SignUpScreen();
-                          }
-                      ),
+                      MaterialPageRoute(builder: (context) {
+                        return const SignUpScreen();
+                      }),
                     );
                   },
                   child: const Text(
