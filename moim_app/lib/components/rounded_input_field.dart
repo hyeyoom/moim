@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:moim_app/components/stateful_text_field.dart';
 import 'package:moim_app/components/text_field_container.dart';
-
-import '../design_system.dart';
+import 'package:moim_app/core/constants/design_system.dart';
 
 enum RoundedInputFieldType { text, password }
 
@@ -24,19 +24,12 @@ class RoundedInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextField(
-        obscureText: type == RoundedInputFieldType.password,
-        onChanged: onChanged,
-        decoration: InputDecoration(
-          icon: Icon(
-            icon,
-            color: color,
-          ),
-          hintText: hintText,
-          border: InputBorder.none,
-          suffixIcon: type == RoundedInputFieldType.password ? const Icon(Icons.visibility) : null
-        ),
-      ),
+      child: StatefulTextField(
+          type: type,
+          onChanged: onChanged,
+          icon: icon,
+          color: color,
+          hintText: hintText),
     );
   }
 }

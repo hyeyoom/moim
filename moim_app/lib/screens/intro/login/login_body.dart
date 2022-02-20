@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moim_app/design_system.dart';
-import 'package:moim_app/screens/login/login_screen.dart';
-import 'package:moim_app/screens/sign_up/sign_up_background.dart';
+import 'package:moim_app/components/buttons.dart';
+import 'package:moim_app/components/rounded_input_field.dart';
+import 'package:moim_app/core/constants/design_system.dart';
+import 'package:moim_app/screens/intro/login/login_background.dart';
+import 'package:moim_app/screens/intro/sign_up/sign_up_screen.dart';
+import 'package:moim_app/service/mock_user_service.dart';
 
-import '../../components/buttons.dart';
-import '../../components/rounded_input_field.dart';
+class LoginBody extends StatelessWidget {
+  final MockUserService mockUserService = MockUserService();
 
-class SignUpBody extends StatelessWidget {
-  const SignUpBody({Key? key}) : super(key: key);
+  LoginBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
-      child: SignUpBackground(
+      child: LoginBackground(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -22,7 +24,7 @@ class SignUpBody extends StatelessWidget {
             const Align(
               alignment: AlignmentDirectional.center,
               child: Text(
-                'SIGN UP',
+                'LOGIN',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
             ),
@@ -32,7 +34,7 @@ class SignUpBody extends StatelessWidget {
             Align(
               alignment: AlignmentDirectional.center,
               child: SvgPicture.asset(
-                'assets/icons/signup.svg',
+                'assets/icons/login.svg',
                 height: size.height * 0.35,
               ),
             ),
@@ -48,29 +50,29 @@ class SignUpBody extends StatelessWidget {
               type: RoundedInputFieldType.password,
             ),
             RoundedButton(
-              text: 'SIGN UP',
-              onPress: () {},
+              text: 'LOGIN',
+              onPress: () {
+                mockUserService.auth();
+              },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Text(
-                  'Already have an account? ',
+                  'Do not have an account? ',
                   style: TextStyle(color: primaryColor),
                 ),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) {
-                            return const LoginScreen();
-                          }
-                      ),
+                      MaterialPageRoute(builder: (context) {
+                        return const SignUpScreen();
+                      }),
                     );
                   },
                   child: const Text(
-                    'Login',
+                    'Sign Up',
                     style: TextStyle(
                       color: primaryColor,
                       fontWeight: FontWeight.bold,
