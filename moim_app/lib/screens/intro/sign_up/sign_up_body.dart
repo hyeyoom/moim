@@ -5,9 +5,12 @@ import 'package:moim_app/components/rounded_input_field.dart';
 import 'package:moim_app/core/constants/design_system.dart';
 import 'package:moim_app/screens/intro/login/login_screen.dart';
 import 'package:moim_app/screens/intro/sign_up/sign_up_background.dart';
+import 'package:moim_app/service/mock_user_service.dart';
 
 class SignUpBody extends StatelessWidget {
-  const SignUpBody({Key? key}) : super(key: key);
+  MockUserService mockUserService = MockUserService();
+
+  SignUpBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,10 @@ class SignUpBody extends StatelessWidget {
             ),
             RoundedButton(
               text: 'SIGN UP',
-              onPress: () {},
+              onPress: () {
+                debugPrint('request sign up');
+                mockUserService.join();
+              },
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

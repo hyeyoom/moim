@@ -11,7 +11,7 @@ class SignUpScreen extends StatelessWidget {
       child: Scaffold(
         body: Container(
           color: Colors.white,
-          child: const SignUpBody(),
+          child: SignUpBody(),
         ),
       ),
     );

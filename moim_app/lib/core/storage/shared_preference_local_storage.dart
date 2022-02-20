@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:moim_app/core/storage/local_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,11 +26,14 @@ class SharedPreferenceLocalStorage extends LocalStorage {
 
   @override
   String? load(String key) {
-    return _preferences?.getString(key);
+    var data = _preferences?.getString(key);
+    debugPrint('load from localStorage: $data');
+    return data;
   }
 
   @override
   void save(String key, String value) {
     _preferences?.setString(key, value);
+    debugPrint('saved: ($key, $value)');
   }
 }

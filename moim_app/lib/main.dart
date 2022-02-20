@@ -39,39 +39,11 @@ class _MoimAppState extends State<MoimApp> {
         primaryColor: primaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: determineScreen(),
+      initialRoute: WelcomeScreen.route,
+      routes: {
+        WelcomeScreen.route: (context) => const WelcomeScreen(),
+        MainScreen.route: (context) => const MainScreen(),
+      },
     );
   }
-
-  // FIXME: 분명 라우트하는 방식이 있을거임.
-  Widget determineScreen() {
-    String? refreshKey = localStorage.load('refresh_key');
-    if (refreshKey == null) {
-      return const WelcomeScreen();
-    }
-    return const MainScreen();
-  }
 }
-
-/*
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    */
-/*return MaterialApp(
-      title: 'Moim',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: primaryColor,
-        scaffoldBackgroundColor: Colors.white,
-      ),
-      home: const WelcomeScreen(),
-    );*/ /*
-
-    return const WelcomeScreen();
-  }
-}
-*/

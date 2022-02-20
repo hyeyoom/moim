@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
       child: Scaffold(
         body: Container(
           color: Colors.white,
-          child: const LoginBody(),
+          child: LoginBody(),
         ),
       ),
     );
