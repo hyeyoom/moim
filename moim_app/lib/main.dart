@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moim_app/core/storage/local_storage.dart';
 import 'package:moim_app/screens/intro/welcome/welcome_screen.dart';
-import 'package:moim_app/screens/main/MainScreen.dart';
+import 'package:moim_app/screens/main/main_screen.dart';
 
 import 'core/constants/design_system.dart';
 import 'core/storage/shared_preference_local_storage.dart';
