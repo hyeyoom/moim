@@ -52,7 +52,7 @@ class AppState extends ChangeNotifier {
   void logout() {
     _loggedIn = false;
     saveLoginState(loggedIn);
-    _currentAction = PageAction(state: PageState.REPLACE_ALL, page: loginPageConfig);
+    _currentAction = PageAction(state: PageState.REPLACE_ALL, page: welcomePageConfig);
     notifyListeners();
   }
 
