@@ -10,29 +10,33 @@ class MoimRouteParser extends RouteInformationParser<PageConfiguration> {
       RouteInformation routeInformation) async {
     final uri = Uri.parse(routeInformation.location!);
     if(uri.pathSegments.isEmpty) {
-      return welcomePageConfig;
+      return splashScreenConfig;
     }
 
     final path = '/' + uri.pathSegments[0];
     switch (path) {
+      case splashPath:
+        return splashScreenConfig;
       case welcomePath:
-        return welcomePageConfig;
+        return welcomeScreenConfig;
       case loginPath:
-        return loginPageConfig;
+        return loginScreenConfig;
       case signUpPath:
-        return signUpPageConfig;
+        return signUpScreenConfig;
       case myPagePath:
-        return myPageConfig;
+        return myPageScreenConfig;
       case mainPath:
-        return mainPageConfig;
+        return mainScreenConfig;
       default:
-        return welcomePageConfig;
+        return splashScreenConfig;
     }
   }
 
   @override
   RouteInformation restoreRouteInformation(PageConfiguration configuration) {
     switch (configuration.uiPage) {
+      case Pages.SPLASH:
+        return const RouteInformation(location: splashPath);
       case Pages.WELCOME:
         return const RouteInformation(location: welcomePath);
       case Pages.LOGIN:
@@ -43,8 +47,8 @@ class MoimRouteParser extends RouteInformationParser<PageConfiguration> {
         return const RouteInformation(location: myPagePath);
       case Pages.MAIN:
         return const RouteInformation(location: mainPath);
-      default: return const RouteInformation(location: welcomePath);
-
+      default:
+        return const RouteInformation(location: splashPath);
     }
   }
 }

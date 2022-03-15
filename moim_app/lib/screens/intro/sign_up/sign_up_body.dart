@@ -73,7 +73,7 @@ class SignUpBody extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () => appState.currentAction =
-                      PageAction(state: PageState.REPLACE, page: loginPageConfig),
+                      PageAction(state: PageState.REPLACE, page: loginScreenConfig),
                   child: const Text(
                     'Login',
                     style: TextStyle(

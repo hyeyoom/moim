@@ -21,7 +21,7 @@ class MainScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              appState.currentAction = PageAction(state: PageState.ADD_PAGE, page: myPageConfig);
+              appState.currentAction = PageAction(state: PageState.ADD_PAGE, page: myPageScreenConfig);
             },
             icon: const Icon(Icons.account_box_rounded)
           )

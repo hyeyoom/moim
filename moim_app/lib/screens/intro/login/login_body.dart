@@ -17,6 +17,14 @@ class LoginBody extends StatelessWidget {
 
   LoginBody({Key? key}) : super(key: key);
 
+  void textNotification(BuildContext context, {required String message, int second = 1500}) {
+    var snackBar = SnackBar(
+      content: Text(message),
+      duration: Duration(milliseconds: second),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -59,8 +67,17 @@ class LoginBody extends StatelessWidget {
             RoundedButton(
               text: 'LOGIN',
               onPress: () {
-                mockUserService.auth();
-                appState.currentAction = PageAction(state: PageState.REPLACE_ALL, page: mainPageConfig);
+                mockUserService.auth().then((value) {
+                  if(value == '아무말') {
+                    appState.currentAction = PageAction(
+                        state: PageState.REPLACE_ALL, page: mainScreenConfig);
+                    appState.login();
+                  } else {
+                    textNotification(context, message: '아이디 및 비밀번호를 다시 확인해주세요');
+                  }
+                }).onError((error, stackTrace) {
+                  textNotification(context, message: '에러가 발생했습니다');
+                });
               },
             ),
             Row(
@@ -72,7 +89,7 @@ class LoginBody extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () => appState.currentAction =
-                      PageAction(state: PageState.REPLACE, page: signUpPageConfig),
+                      PageAction(state: PageState.REPLACE, page: signUpScreenConfig),
                   child: const Text(
                     'Sign Up',
                     style: TextStyle(

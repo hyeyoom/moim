@@ -1,4 +1,5 @@
 enum Pages {
+  SPLASH,
   WELCOME,
   LOGIN,
   MY_PAGE,

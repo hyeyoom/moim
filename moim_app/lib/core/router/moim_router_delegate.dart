@@ -9,6 +9,7 @@ import 'package:moim_app/core/router/router_page_state.dart';
 import 'package:moim_app/core/router/router_pages.dart';
 import 'package:moim_app/screens/intro/login/login.dart';
 import 'package:moim_app/screens/intro/sign_up/sign_up_screen.dart';
+import 'package:moim_app/screens/intro/splash/splash_screen.dart';
 import 'package:moim_app/screens/intro/welcome/welcome_screen.dart';
 import 'package:moim_app/screens/main/main_screen.dart';
 import 'package:moim_app/screens/main/mypage/my_page_screen.dart';
@@ -109,20 +110,23 @@ class MoimRouterDelegate extends RouterDelegate<PageConfiguration>
             pageConfig.uiPage;
     if (shouldAddPage) {
       switch (pageConfig.uiPage) {
+        case Pages.SPLASH:
+          _addPageData(SplashScreen(), splashScreenConfig);
+          break;
         case Pages.WELCOME:
-          _addPageData(WelcomeScreen(), welcomePageConfig);
+          _addPageData(WelcomeScreen(), welcomeScreenConfig);
           break;
         case Pages.LOGIN:
-          _addPageData(LoginScreen(), loginPageConfig);
+          _addPageData(LoginScreen(), loginScreenConfig);
           break;
         case Pages.SIGN_UP:
-          _addPageData(SignUpScreen(), signUpPageConfig);
+          _addPageData(SignUpScreen(), signUpScreenConfig);
           break;
         case Pages.MAIN:
-          _addPageData(MainScreen(), mainPageConfig);
+          _addPageData(MainScreen(), mainScreenConfig);
           break;
         case Pages.MY_PAGE:
-          _addPageData(MyPageScreen(), myPageConfig);
+          _addPageData(MyPageScreen(), myPageScreenConfig);
           break;
         default:
           break;
@@ -175,20 +179,23 @@ class MoimRouterDelegate extends RouterDelegate<PageConfiguration>
 
   void _setPageAction(PageAction action) {
     switch (action.page!.uiPage) {
+      case Pages.SPLASH:
+        splashScreenConfig.currentPageAction = action;
+        break;
       case Pages.WELCOME:
-        welcomePageConfig.currentPageAction = action;
+        welcomeScreenConfig.currentPageAction = action;
         break;
       case Pages.LOGIN:
-        loginPageConfig.currentPageAction = action;
+        loginScreenConfig.currentPageAction = action;
         break;
       case Pages.SIGN_UP:
-        signUpPageConfig.currentPageAction = action;
+        signUpScreenConfig.currentPageAction = action;
         break;
       case Pages.MAIN:
-        mainPageConfig.currentPageAction = action;
+        mainScreenConfig.currentPageAction = action;
         break;
       case Pages.MY_PAGE:
-        mainPageConfig.currentPageAction = action;
+        mainScreenConfig.currentPageAction = action;
         break;
       default:
         break;
@@ -196,9 +203,9 @@ class MoimRouterDelegate extends RouterDelegate<PageConfiguration>
   }
 
   List<Page> buildPages() {
-    // if (!appState.splashFinished) {
-    //   replaceAll(welcomePageConfig);
-    // } else {
+    if (!appState.initFinished) {
+      replaceAll(splashScreenConfig);
+    } else {
       switch (appState.currentAction.state) {
         case PageState.NONE:
           break;
@@ -225,7 +232,7 @@ class MoimRouterDelegate extends RouterDelegate<PageConfiguration>
           addAll(appState.currentAction.pages!);
           break;
       }
-    // }
+    }
     appState.resetCurrentAction();
     return List.of(_pages);
   }
@@ -233,35 +240,37 @@ class MoimRouterDelegate extends RouterDelegate<PageConfiguration>
 
   void parseRoute(Uri uri) {
     if (uri.pathSegments.isEmpty) {
-      setNewRoutePath(welcomePageConfig);
+      setNewRoutePath(splashScreenConfig);
       return;
     }
 
-    // 딥링크 사용 시 이곳에 세부사항 구현 navapp://deeplinks/details/#
     if (uri.pathSegments.length == 1) {
       final path = uri.pathSegments[0];
       switch (path) {
+        case 'splash':
+          replaceAll(splashScreenConfig);
+          break;
         case 'welcome':
-          replaceAll(welcomePageConfig);
+          replaceAll(welcomeScreenConfig);
           break;
         case 'login':
           setPath([
-            _createPage(LoginScreen(), loginPageConfig)
+            _createPage(LoginScreen(), loginScreenConfig)
           ]);
           break;
         case 'signUp':
           setPath([
-            _createPage(LoginScreen(), loginPageConfig),
-            _createPage(SignUpScreen(), signUpPageConfig)
+            _createPage(LoginScreen(), loginScreenConfig),
+            _createPage(SignUpScreen(), signUpScreenConfig)
           ]);
           break;
         case 'main':
-          replaceAll(mainPageConfig);
+          replaceAll(mainScreenConfig);
           break;
         case 'myPage':
           setPath([
-            _createPage(MainScreen(), mainPageConfig),
-            _createPage(MyPageScreen(), myPageConfig)
+            _createPage(MainScreen(), mainScreenConfig),
+            _createPage(MyPageScreen(), myPageScreenConfig)
           ]);
           break;
       }

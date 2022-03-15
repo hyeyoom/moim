@@ -34,7 +34,7 @@ class _MoimAppState extends State<MoimApp> {
 
   _MoimAppState() {
     delegate = MoimRouterDelegate(appState);
-    delegate.setNewRoutePath(welcomePageConfig);
+    delegate.setNewRoutePath(welcomeScreenConfig);
     dispatcher = MoimBackButtonDispatcher(delegate);
   }
 

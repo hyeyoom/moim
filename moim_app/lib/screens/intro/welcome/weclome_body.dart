@@ -13,6 +13,14 @@ import 'welcome_background.dart';
 class WelcomeBody extends StatelessWidget {
   const WelcomeBody({Key? key}) : super(key: key);
 
+  void textNotification(BuildContext context, {required String message, int second = 1500}) {
+    var snackBar = SnackBar(
+      content: Text(message),
+      duration: Duration(milliseconds: second),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -47,7 +55,7 @@ class WelcomeBody extends StatelessWidget {
             child: RoundedButton(
               text: 'LOGIN',
               onPress: () => appState.currentAction =
-                    PageAction(state: PageState.ADD_PAGE, page: loginPageConfig),
+                    PageAction(state: PageState.ADD_PAGE, page: loginScreenConfig),
               color: primaryColor,
               textColor: Colors.white,
             ),
@@ -57,7 +65,7 @@ class WelcomeBody extends StatelessWidget {
             child: RoundedButton(
               text: 'SIGN UP',
               onPress: () => appState.currentAction =
-                  PageAction(state: PageState.ADD_PAGE, page: signUpPageConfig),
+                  PageAction(state: PageState.ADD_PAGE, page: signUpScreenConfig),
               color: primaryWeakColor,
               textColor: Colors.black,
             ),

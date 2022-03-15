@@ -14,6 +14,9 @@ class AppState extends ChangeNotifier {
   bool _loggedIn = false;
   bool get loggedIn => _loggedIn;
 
+  bool _initFinished = false;
+  bool get initFinished => _initFinished;
+
   LocalStorage localStorage = SharedPreferenceLocalStorage();
 
   PageAction _currentAction = PageAction();
@@ -28,13 +31,23 @@ class AppState extends ChangeNotifier {
     getLoggedInState();
   }
 
+  void setInitFinished() {
+    _initFinished = true;
+    if (_loggedIn) {
+      _currentAction = PageAction(state: PageState.REPLACE_ALL, page: mainScreenConfig);
+    } else {
+      _currentAction = PageAction(state: PageState.REPLACE_ALL, page: welcomeScreenConfig);
+    }
+    notifyListeners();
+  }
+
   void openLogin() {
-    _currentAction = PageAction(state: PageState.ADD_PAGE, page: loginPageConfig);
+    _currentAction = PageAction(state: PageState.ADD_PAGE, page: loginScreenConfig);
     notifyListeners();
   }
 
   void openSignUp() {
-    _currentAction = PageAction(state: PageState.ADD_PAGE, page: signUpPageConfig);
+    _currentAction = PageAction(state: PageState.ADD_PAGE, page: signUpScreenConfig);
     notifyListeners();
   }
 
@@ -45,14 +58,14 @@ class AppState extends ChangeNotifier {
   void login() {
     _loggedIn = true;
     saveLoginState(loggedIn);
-    _currentAction = PageAction(state: PageState.REPLACE_ALL, page: mainPageConfig);
+    _currentAction = PageAction(state: PageState.REPLACE_ALL, page: mainScreenConfig);
     notifyListeners();
   }
 
   void logout() {
     _loggedIn = false;
     saveLoginState(loggedIn);
-    _currentAction = PageAction(state: PageState.REPLACE_ALL, page: welcomePageConfig);
+    _currentAction = PageAction(state: PageState.REPLACE_ALL, page: welcomeScreenConfig);
     notifyListeners();
   }
 
@@ -63,15 +76,7 @@ class AppState extends ChangeNotifier {
 
   void getLoggedInState() async {
     final prefs = await SharedPreferences.getInstance();
-    print('loggedInKe=$loggedInKey');
-    if(loggedInKey.isEmpty) {
-      _loggedIn = prefs.getBool(loggedInKey)!;
-    } else {
-      _loggedIn = false;
-    }
-    if (_loggedIn == null) {
-      print('loggedIn is null');
-      _loggedIn = false;
-    }
+    print('loggedInKey=$loggedInKey [currentLoginStatus=$_loggedIn]');
+    _loggedIn = prefs.getBool(loggedInKey)?? false;
   }
 }
