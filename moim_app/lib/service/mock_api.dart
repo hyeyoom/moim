@@ -4,13 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class MockApi {
+
+  static const String httpUri = 'localhost:8080';
+
   Future<UserJoinResponse> join(UserJoinRequest request) async {
     var client = http.Client();
     var data = {'email': request.email, 'password': request.password};
     var body = json.encode(data);
     try {
       var response = await client.post(
-        Uri.http('10.0.2.2:8080', '/users'),
+        Uri.http(httpUri, '/users'),
         headers: {'Content-Type': 'application/json'},
         body: body,
       );
@@ -28,7 +31,7 @@ class MockApi {
     var body = json.encode(data);
     try {
       var response = await client.post(
-        Uri.http('10.0.2.2:8080', '/users/authentication'),
+        Uri.http(httpUri, '/users/authentication'),
         headers: {'Content-Type': 'application/json'},
         body: body,
       );

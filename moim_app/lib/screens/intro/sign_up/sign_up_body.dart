@@ -3,9 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:moim_app/components/buttons.dart';
 import 'package:moim_app/components/rounded_input_field.dart';
 import 'package:moim_app/core/constants/design_system.dart';
-import 'package:moim_app/screens/intro/login/login_screen.dart';
+import 'package:moim_app/core/router/router_consts.dart';
+import 'package:moim_app/core/router/router_page_action.dart';
+import 'package:moim_app/core/router/router_page_state.dart';
 import 'package:moim_app/screens/intro/sign_up/sign_up_background.dart';
 import 'package:moim_app/service/mock_user_service.dart';
+import 'package:provider/provider.dart';
+
+import '../../../core/router/app_state.dart';
 
 class SignUpBody extends StatelessWidget {
   MockUserService mockUserService = MockUserService();
@@ -15,6 +20,8 @@ class SignUpBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    AppState appState = Provider.of<AppState>(context, listen: false);
+
     return SingleChildScrollView(
       child: SignUpBackground(
         child: Column(
@@ -54,6 +61,7 @@ class SignUpBody extends StatelessWidget {
               onPress: () {
                 debugPrint('request sign up');
                 mockUserService.join();
+                PageAction(state: PageState.POP);
               },
             ),
             Row(
@@ -64,14 +72,8 @@ class SignUpBody extends StatelessWidget {
                   style: TextStyle(color: primaryColor),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) {
-                        return const LoginScreen();
-                      }),
-                    );
-                  },
+                  onTap: () => appState.currentAction =
+                      PageAction(state: PageState.REPLACE, page: loginScreenConfig),
                   child: const Text(
                     'Login',
                     style: TextStyle(

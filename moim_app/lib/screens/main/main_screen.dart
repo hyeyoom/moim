@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:moim_app/core/router/router_page_action.dart';
+import 'package:moim_app/core/router/router_page_state.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/router/app_state.dart';
+import '../../core/router/router_consts.dart';
 
 class MainScreen extends StatelessWidget {
 
@@ -8,9 +14,18 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Hello'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              appState.currentAction = PageAction(state: PageState.ADD_PAGE, page: myPageScreenConfig);
+            },
+            icon: const Icon(Icons.account_box_rounded)
+          )
+        ],
       ),
       body: Container(
         color: Colors.blue,
