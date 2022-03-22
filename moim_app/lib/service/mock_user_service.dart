@@ -28,7 +28,7 @@ class MockUserService {
     }
   }
 
-  Future<Map?> locationSearch(String inputAddress) async {
+  Future<Map<String, dynamic>?> locationSearch(String inputAddress) async {
     var response =
         await mockApi.locationSearch(LocationSearchRequest(inputAddress));
     if (response.latlng != null) {

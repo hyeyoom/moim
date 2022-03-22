@@ -6,13 +6,31 @@ import 'moim_kakao_map_address_search.dart';
 
 const String kakaoMapKey = 'yourKakaoJavaScriptKey';
 
-class MoimKakaoMapBody extends StatelessWidget {
+class MoimKakaoMapBody extends StatefulWidget {
   const MoimKakaoMapBody({Key? key}) : super(key: key);
+
+  @override
+  State<MoimKakaoMapBody> createState() => _MoimKakaoMapBody();
+
+  static _MoimKakaoMapBody? of(BuildContext context) =>
+      context.findAncestorStateOfType<_MoimKakaoMapBody>();
+}
+
+class _MoimKakaoMapBody extends State<MoimKakaoMapBody> {
+  double maplat = 37.58041991631226, maplng = 127.2266311906996;
+
+  set map(Map<String, dynamic> value) => setState(() => {
+        maplng = value['x'] is String ? double.parse(value['x']) : value['x'],
+        maplat = value['y'] is String ? double.parse(value['y']) : value['y'],
+      });
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var _mapController;
+
+    rebuildAllChildren(context);
+    debugPrint('Internals lat: $maplat, lng: $maplng');
 
     return Column(
       children: [
@@ -22,8 +40,8 @@ class MoimKakaoMapBody extends StatelessWidget {
               width: size.width,
               height: size.height - 200,
               kakaoMapKey: kakaoMapKey,
-              lat: 37.48041991631226,
-              lng: 127.1266311906996,
+              lat: maplat,
+              lng: maplng,
               showMapTypeControl: true,
               showZoomControl: true,
               draggableMarker: true,
@@ -58,7 +76,7 @@ var content = '<div class="customoverlay">' +
     '  </a>' +
     '</div>';
 
-var position = new kakao.maps.LatLng(37.48041991631226, 127.1266311906996);
+var position = new kakao.maps.LatLng($maplat, $maplng);
 
 var customOverlay = new kakao.maps.CustomOverlay({
     map: map,
@@ -88,5 +106,14 @@ var customOverlay = new kakao.maps.CustomOverlay({
         )
       ],
     );
+  }
+
+  void rebuildAllChildren(BuildContext context) {
+    void rebuild(Element el) {
+      el.markNeedsBuild();
+      el.visitChildren(rebuild);
+    }
+
+    (context as Element).visitChildren(rebuild);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:moim_app/screens/map/kakao/moim_kakao_map_body.dart';
 import 'package:moim_app/service/mock_user_service.dart';
 
 class AddressSearchPage extends StatefulWidget {
@@ -38,10 +39,10 @@ class _AddressSearchPageState extends State<AddressSearchPage> {
       textInputAction: TextInputAction.go,
       onSubmitted: (value) async {
         _searchController.text = value;
-        var latlng =
+        Map<String, dynamic>? latlng =
             await mockUserService.locationSearch(_searchController.text);
 
-        debugPrint('latlng : $latlng');
+        MoimKakaoMapBody.of(context)?.map = latlng!;
       },
       controller: _searchController,
       decoration: InputDecoration(
