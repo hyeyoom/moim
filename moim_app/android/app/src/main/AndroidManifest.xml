@@ -38,6 +38,7 @@
             android:value="2" />
 
        <meta-data android:name="com.kakao.sdk.AppKey" android:value="YourKakaoNativeAppKey"/>
+       <meta-data android:name="com.naver.maps.map.CLIENT_ID" android:value="yourNaverID"/>
 
     </application>
 </manifest>
