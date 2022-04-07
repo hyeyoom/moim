@@ -34,11 +34,13 @@ class _BaseMapPageState extends State<BaseMapPage> {
             initLocationTrackingMode: _trackingMode,
             locationButtonEnable: true,
             indoorEnable: true,
+            onCameraChange: _onCameraChange,
             onCameraIdle: _onCameraIdle,
             onMapTap: _onMapTap,
             onMapLongTap: _onMapLongTap,
             onMapDoubleTap: _onMapDoubleTap,
             onMapTwoFingerTap: _onMapTwoFingerTap,
+            onSymbolTap: _onSymbolTap,
             maxZoom: 17,
             minZoom: 12,
             useSurface: kReleaseMode,
@@ -52,6 +54,22 @@ class _BaseMapPageState extends State<BaseMapPage> {
         ],
       ),
     );
+  }
+
+  void _onCameraChange(
+      LatLng? latLng, CameraChangeReason reason, bool? isAnimated) {
+    print('카메라 움직임 >>> 위치 : ${latLng?.latitude}, ${latLng?.longitude}'
+        '\n원인: $reason'
+        '\n에니메이션 여부: $isAnimated');
+  }
+
+  _onSymbolTap(LatLng? position, String? caption) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(
+          '[onSymbolTap] caption: $caption, lat: ${position?.latitude}, lon: ${position?.longitude}'),
+      duration: Duration(milliseconds: 500),
+      backgroundColor: Colors.black,
+    ));
   }
 
   _onMapTap(LatLng position) async {
