@@ -12,15 +12,27 @@ class MockUserService {
   }
 
   Future<int?> join() async {
-    var response = await mockApi.join(UserJoinRequest('test@test.com', '12345'));
+    var response =
+        await mockApi.join(UserJoinRequest('test@test.com', '12345'));
     return response.id;
   }
 
   Future<String?> auth() async {
-    var response = await mockApi.auth(UserAuthenticationRequest('test@test.com', '12345'));
+    var response =
+        await mockApi.auth(UserAuthenticationRequest('test@test.com', '12345'));
     if (response.refreshToken != null) {
       localStorage.save('refreshToken', response.refreshToken);
       return response.refreshToken;
+    } else {
+      return null;
+    }
+  }
+
+  Future<Map<String, dynamic>?> locationSearch(String inputAddress) async {
+    var response =
+        await mockApi.locationSearch(LocationSearchRequest(inputAddress));
+    if (response.latlng != null) {
+      return response.latlng;
     } else {
       return null;
     }
