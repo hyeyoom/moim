@@ -23,9 +23,9 @@ class _MoimNaverMapScreen extends State<MoimNaverMapScreen> {
     '마커 예제',
     '패스 예제',
     '원형 오버레이 예제',
-    '컨트롤러 테스트',
+    '패스 테스트 예제',
     '폴리곤 예제',
-    'GLSurface Thread collision test',
+    '텍스트 필드 예제',
   ];
 
   @override

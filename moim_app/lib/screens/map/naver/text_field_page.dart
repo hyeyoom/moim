@@ -38,7 +38,7 @@ class _TextFieldPageState extends State<TextFieldPage> {
             margin: EdgeInsets.all(24),
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
             child: TextField(
-              decoration: InputDecoration.collapsed(hintText: ''),
+              decoration: InputDecoration.collapsed(hintText: 'hihi'),
               maxLines: 1,
             ),
           ),

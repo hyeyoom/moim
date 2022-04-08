@@ -25,19 +25,19 @@ class _MarkerMapPageState extends State<MarkerMapPage> {
       ).then((image) {
         setState(() {
           _markers.add(Marker(
-            markerId: 'id',
-            position: LatLng(37.563600, 126.962370),
-            captionText: "커스텀 아이콘",
-            captionColor: Colors.indigo,
-            captionTextSize: 20.0,
-            alpha: 0.8,
-            captionOffset: 30,
-            icon: image,
-            anchor: AnchorPoint(0.5, 1),
-            width: 45,
-            height: 45,
-            infoWindow: '인포 윈도우',
-          ));
+              markerId: 'id',
+              position: LatLng(37.563600, 126.962370),
+              captionText: "커스텀 아이콘",
+              captionColor: Colors.indigo,
+              captionTextSize: 20.0,
+              alpha: 0.8,
+              captionOffset: 30,
+              icon: image,
+              anchor: AnchorPoint(0.5, 1),
+              width: 45,
+              height: 45,
+              infoWindow: '인포 윈도우',
+              onMarkerTab: _onMarkerTap));
         });
       });
     });
@@ -167,19 +167,20 @@ class _MarkerMapPageState extends State<MarkerMapPage> {
         markerId: DateTime.now().toIso8601String(),
         position: latLng,
         infoWindow: '테스트',
+        onMarkerTab: _onMarkerTap,
       ));
       setState(() {});
     }
   }
 
-  void _onMarkerTap(Marker marker, Map<String, int> iconSize) {
-    int pos = _markers.indexWhere((m) => m.markerId == marker.markerId);
+  void _onMarkerTap(Marker? marker, Map<String, int?> iconSize) {
+    int pos = _markers.indexWhere((m) => m.markerId == marker?.markerId);
     setState(() {
       _markers[pos].captionText = '선택됨';
     });
     if (_currentMode == MODE_REMOVE) {
       setState(() {
-        _markers.removeWhere((m) => m.markerId == marker.markerId);
+        _markers.removeWhere((m) => m.markerId == marker?.markerId);
       });
     }
   }

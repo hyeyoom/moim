@@ -30,6 +30,7 @@ class _PathMapPageState extends State<PathMapPage> {
       _markers.add(Marker(
         markerId: point.json.toString(),
         position: point,
+        onMarkerTab: _onMarkerTap,
       ));
     });
     super.initState();
@@ -190,17 +191,18 @@ class _PathMapPageState extends State<PathMapPage> {
       _markers.add(Marker(
         markerId: latLng.json.toString(),
         position: latLng,
+        onMarkerTab: _onMarkerTap,
       ));
       _coordinates.add(latLng);
       setState(() {});
     }
   }
 
-  void _onMarkerTap(Marker marker, Map<String, int> iconSize) {
+  void _onMarkerTap(Marker? marker, Map<String, int?> iconSize) {
     if (_currentMode == MODE_REMOVE && _coordinates.length > 2) {
       setState(() {
-        _coordinates.remove(marker.position);
-        _markers.removeWhere((m) => m.markerId == marker.markerId);
+        _coordinates.remove(marker?.position);
+        _markers.removeWhere((m) => m.markerId == marker?.markerId);
       });
     }
   }

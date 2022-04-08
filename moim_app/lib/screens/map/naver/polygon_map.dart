@@ -13,9 +13,9 @@ class _PolygonMapState extends State<PolygonMap>
   bool _isAdding = false;
 
   Completer<NaverMapController> _controller = Completer();
-  late AnimationController _animationController;
-  late Animation _colorTwin;
-  late Animation _rotation;
+  AnimationController? _animationController;
+  Animation? _colorTwin;
+  Animation? _rotation;
 
   List<Marker> _markers = [];
   List<PolygonOverlay> _polygon = [];
@@ -31,9 +31,9 @@ class _PolygonMapState extends State<PolygonMap>
     _colorTwin = ColorTween(
       begin: Colors.indigoAccent,
       end: Colors.redAccent,
-    ).animate(_animationController);
-    _rotation =
-        Tween<double>(begin: 0.625, end: 0.0).animate(_animationController);
+    ).animate(_animationController!);
+    _rotation = Tween<double>(begin: 0.625, end: 0.0)
+        .animate(_animationController!) as Animation<double>;
 
     _polygon.add(PolygonOverlay(
       'default polygon',
@@ -147,10 +147,9 @@ class _PolygonMapState extends State<PolygonMap>
   _fab() {
     return FloatingActionButton(
       onPressed: _onPressFab,
-      backgroundColor: _colorTwin.value,
+      backgroundColor: _colorTwin?.value,
       child: RotationTransition(
-        turns:
-            Tween<double>(begin: 0.625, end: 0.0).animate(_animationController),
+        turns: _rotation as Animation<double>,
         child: Icon(Icons.clear),
       ),
     );
@@ -158,21 +157,20 @@ class _PolygonMapState extends State<PolygonMap>
 
   // fab on click listener
   void _onPressFab() {
+    List<LatLng> data = _markers.map((e) => e.position).cast<LatLng>().toList();
     if (!_isAdding) {
-      _animationController.forward();
+      _animationController?.forward();
     } else {
-      _animationController.reverse();
+      _animationController?.reverse();
       // 완료
       if (_markers.length >= 3) {
-        /*
         _polygon.add(PolygonOverlay(
           DateTime.now().millisecondsSinceEpoch.toString(),
-          _markers.map((e) => e.position).toList(),
+          data,
           color: Colors.transparent,
           outlineWidth: 3,
           outlineColor: Colors.redAccent,
         ));
-         */
       }
       _markers.clear();
     }
