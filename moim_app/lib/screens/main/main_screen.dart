@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:moim_app/components/maps/google/google_map_component.dart';
 import 'package:moim_app/core/router/router_page_action.dart';
 import 'package:moim_app/core/router/router_page_state.dart';
 import 'package:provider/provider.dart';
@@ -27,9 +28,7 @@ class MainScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Container(
-        color: Colors.blue,
-      ),
+      body: GoogleMapComponent(),
       bottomNavigationBar: BottomAppBar(
         child: SizedBox(
           height: 70,
