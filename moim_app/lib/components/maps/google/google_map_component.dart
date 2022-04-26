@@ -51,9 +51,9 @@ class _GoogleMapComponentState extends State<GoogleMapComponent> {
     final Canvas canvas = Canvas(recorder);
     ui.Image networkImage = await getImage('https://picsum.photos/200');
     ReverseWaterDrops myPainter = ReverseWaterDrops(label, networkImage);
-    myPainter.paint(canvas, Size(800,(800*0.5555555555555556).toDouble()));
+    myPainter.paint(canvas, Size(100, 230));
 
-    final ui.Image image = await recorder.endRecording().toImage(520, 520);
+    final ui.Image image = await recorder.endRecording().toImage(100, 230);
     final ByteData? byteData =
     await image.toByteData(format: ui.ImageByteFormat.png);
     return byteData!.buffer.asUint8List();
@@ -73,7 +73,8 @@ class _GoogleMapComponentState extends State<GoogleMapComponent> {
   Widget build(BuildContext context) {
     return GoogleMap(
       initialCameraPosition: cameraPosition,
-
+      markers: Set.of(_markers.values),
+      onTap: _onTap,
     );
   }
 }
