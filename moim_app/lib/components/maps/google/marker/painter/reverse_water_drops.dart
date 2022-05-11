@@ -1,30 +1,27 @@
 import 'dart:ui' as ui;
-import 'dart:math' as math;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ReverseWaterDrops extends CustomPainter {
 
-  final String label;
   final ui.Image image;
+  final Color outlineColor;
 
-  ReverseWaterDrops(this.label, this.image);
+  ReverseWaterDrops(this.outlineColor, this.image);
 
   @override
   void paint(Canvas canvas, Size size) {
-
-    Color pinColor = const Color.fromRGBO(69, 139, 194, 1.0);
 
     double pointCenterX = size.width/2;
     double pointCenterY = size.height/2-size.width/8*5;
 
     Paint paint = Paint()
-      ..color = pinColor
+      ..color = outlineColor
       ..style = PaintingStyle.fill
       ..strokeWidth = 1.0;
 
     Paint invertedTriangle = Paint()
-      ..color = pinColor
+      ..color = outlineColor
       ..style = PaintingStyle.fill;
 
     Paint circleImage = Paint()

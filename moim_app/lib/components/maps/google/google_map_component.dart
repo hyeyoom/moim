@@ -39,7 +39,8 @@ class _GoogleMapComponentState extends State<GoogleMapComponent> {
         markerId: markerId,
         position: position,
         anchor: Offset(0.5, 0.5),
-        icon: BitmapDescriptor.fromBytes(bytes));
+        icon: BitmapDescriptor.fromBytes(bytes)
+    );
 
     setState(() {
       _markers[markerId] = marker;
@@ -50,7 +51,8 @@ class _GoogleMapComponentState extends State<GoogleMapComponent> {
     ui.PictureRecorder recorder = ui.PictureRecorder();
     final Canvas canvas = Canvas(recorder);
     ui.Image networkImage = await getImage('https://picsum.photos/200');
-    ReverseWaterDrops myPainter = ReverseWaterDrops(label, networkImage);
+    Color outlineColor = const Color.fromRGBO(194, 69, 69, 1.0);
+    ReverseWaterDrops myPainter = ReverseWaterDrops(outlineColor, networkImage);
     myPainter.paint(canvas, Size(100, 230));
 
     final ui.Image image = await recorder.endRecording().toImage(100, 230);
